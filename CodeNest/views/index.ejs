@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/js/jquery.min.js'></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Hello! Welcome to <%= title %></p>
+   <div class ="post">
+   <input  type ="text" class = "title" placeholder="Please enter title">
+   <input type = "text" class = "content" placeholder="Please enter content">
+   <button class = "ok"> Submit </button>
+   </div>
+   <div class = "test"></div>
+  </body>
+  <script>
+    function getList() {
+        $.get('/api/test', {}, function (data) {
+            console.log('----data', data)
+            if (data.code == 200) {
+                var html = '', list = data.result;
+                for (var i = 0; i < list.length; i++) {
+                    html += '<div>This is the' + i + 'Data: Title is ' + list[i].title + ' content is ' + list[i].content + '</div>'
+                }
+                $('.test').empty().append(html);
+            }
+
+        })
+    }
+    getList();
+    $('.ok').click(function(){
+        if(!$('.title').val()){
+            alert('Please write the title');
+            return false;
+        }
+
+        if(!$('.content'.val())){
+            alert('Please enter content');
+            return false;
+        }
+        $.post('./api/addtest',{
+            title:$('.title').val(),
+            content:$('.content').val()
+        },function(data){
+            console.log('----addtest',data)
+            if(data.code == 200)
+            {
+                alert('Submit success');
+                getList();
+            }else
+            {
+                alert('Submit failed');
+            }
+        })
+    })
+
+  </script>
+</html>

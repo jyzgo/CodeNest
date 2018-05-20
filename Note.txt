@@ -1,0 +1,29 @@
+Why express?
+
+ejs vs jade?
+
+how to use supervisor
+
+how to use router
+
+router get and post api
+
+how to connect mongoDB in node
+
+db.collection
+
+
+Q:
+    1.How to build a server
+    2.How to control a DB
+    3.How to use express
+   
+   
+   
+   what is "||", I think it's or like in lua 
+    let json = queryJson.query || {}
+    
+   What is Numer() function? I think it's a count function
+
+   What is Promise, a warning called " Promise are not used later"
+         
